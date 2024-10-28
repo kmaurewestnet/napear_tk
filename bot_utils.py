@@ -4,8 +4,8 @@ import psycopg2
 import json
 import re
 import mysql.connector
-import datetime
 from datetime import datetime, timedelta
+import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -186,7 +186,7 @@ def ticket_sin_notificacion():
     else:
         data = []
 
-    ids_with_false_called = [entry["id"] for entry in data if entry.get("called") == "false" and entry.get("type") == "Cancelada"]
+    ids_with_false_called = [entry["id"] for entry in data if entry.get("type") == "Cancelada"]
 
     return(ids_with_false_called)
 
@@ -199,7 +199,7 @@ def ticket_sin_notificacion_inexistentes():
     else:
         data = []
 
-    ids_with_false_called = [entry["id"] for entry in data if entry.get("called") == "false" and entry.get("type") == "INEXISTENTE"]
+    ids_with_false_called = [entry["id"] for entry in data if entry.get("type") == "INEXISTENTE"]
 
     return(ids_with_false_called)   
 
@@ -226,7 +226,7 @@ def update_called_status(id_value):
             json.dump(data, file, indent=4)
     else:
         print(f"El ID {id_value} no se encontró en el archivo.")
-
+        
 def comparar_timestamp(timestamp_texto):
     
     timestamp = datetime.strptime(timestamp_texto, "%Y-%m-%d %H:%M:%S")

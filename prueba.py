@@ -42,20 +42,7 @@ fetch_mesa_data_canceladas = get_datos_mesa(fetch_ticket_db)
 fetch_ticket_db_inex = ticket_sin_notificacion_inexistentes()
 fetch_mesa_data_inex = get_datos_mesa(fetch_ticket_db_inex)
 
-if str(fetch_mesa_data_canceladas) !='':
-    for row in fetch_mesa_data_canceladas:
-        cliente, ticket, fecha, estado, usuario = row
-        mensaje = f'❌ *Reserva Napear Cancelada*\n*Cliente:* {cliente}\n*Ticket:* {ticket}\n*Fecha alta:* {fecha}\n*Estado:* {estado}\n*Creado por:* {usuario}'
-        send_message = bot_message(mensaje)
-        update_state = update_called_status(ticket)
-        
-if str(fetch_mesa_data_inex) !='':
-    for row in fetch_mesa_data_inex:
-        cliente, ticket, fecha, estado, usuario = row
-        fetch_hora = comparar_timestamp(fecha)
-        if fetch_hora == 1:
-            mensaje = f'*⚠️ Ticket sin Reserva*\n*Cliente:* {cliente}\n*Ticket:* {ticket}\n*Fecha alta:* {fecha}\n*Estado:* {estado}\n*Creado por:* {usuario}'
-            send_message = bot_message(mensaje)
-            update_state = update_called_status(ticket)
-    
+print(fetch_mesa_data_canceladas)
+print(fetch_mesa_data_inex)
 
+    
